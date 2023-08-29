@@ -12,8 +12,8 @@ class Logistic:
         self.learning_rate = learning_rate
 
     @staticmethod
-    def _sigmoid(z):
-        return 1 / (1 + np.exp(-z))
+    def _sigmoid(Z):
+        return 1 / (1 + np.exp(-Z))
 
     def _forward_prop(self, X):
         Z = np.dot(self.W.T, X) + self.b
@@ -21,7 +21,7 @@ class Logistic:
         return A
 
     def _back_prop(self, Y, A, X):
-        cost_func = -1 / self.m * np.sum((Y * np.log(A) + (1 - Y) * np.log(1 - A)))
+        cost_func = -1 / self.m * np.sum((Y * np.log(A + 1e-9) + (1 - Y) * np.log(1 - A + 1e-9)))
         dW = 1 / self.m * np.dot(X, (A - Y).T)
         db = 1 / self.m * np.sum(A - Y)
         cost_func = np.squeeze(cost_func)

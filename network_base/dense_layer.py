@@ -59,13 +59,13 @@ class Dense:
             case 'linear':
                 return 1
             case 'sigmoid':
-                return self.Z * (1 - self.Z)
+                return self.A * (1 - self.A)
             case 'tanh':
-                return 1 - np.power(self.Z, 2)
+                return 1 - np.power(self.A, 2)
             case 'relu':
-                return np.where(self.Z >= 0, 1, 0)
+                return np.where(self.A >= 0, 1, 0)
             case 'leaky relu':
-                return np.where(self.Z >= 0, 1, 0.01)
+                return np.where(self.A >= 0, 1, 0.01)
 
     @staticmethod
     def _sigmoid(Z):
